@@ -1,0 +1,254 @@
+import { Head } from 'mdx-deck'
+
+export { future as theme } from 'mdx-deck/themes'
+
+<Head>
+  <title>Web Scraping Presentation</title>
+</Head>
+
+# Web Scraping with Python
+#### <i> Collin Murch </i>
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/1200px-Python-logo-notext.svg.png" alt="python_logo" height="100" width="100" />
+
+---
+
+import { Appear } from 'mdx-deck'
+
+# Why do we care?
+
+<ul>
+	<Appear>
+		<li>The internet itself is a datasource</li>
+		<li>Python lets us grab anything from the Internet</li>
+	</Appear>
+</ul>
+
+---
+
+# How?
+
+<ul>
+	<Appear>
+		<b>Well, there are two main ways:</b>
+		<li>Grabbing HTML</li>
+		<li>APIs (JSON)</li>	
+	</Appear>
+</ul>
+
+---
+
+import { Invert } from 'mdx-deck/layouts'
+
+export default Invert
+
+*With that being said, let's talk about*
+
+# HTML 
+
+<br />
+
+<img src="https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fsingbookswithemily.files.wordpress.com%2F2015%2F03%2Fbeautiful-soup-can-w-mock-turtle-coin.jpg&f=1" alt="soup_img" width="150" height="225" />
+
+---
+
+import { Image } from 'mdx-deck'
+
+<Image src="website.png" />
+
+---
+
+import { FullScreenCode } from 'mdx-deck/layouts'
+
+export default FullScreenCode
+
+```html
+<head>
+	<title>Collin Murch</title>
+	<link rel="stylesheet" type="text/css" href="/portfolio/style.css">
+</head>
+<body>
+	<div class="container" id="passthrough">
+		<img src="/portfolio/background.jpg" class="background">
+		<div class="introduction" id="passthrough">
+			<div class="logo_container">
+				<img src="/portfolio/logo.png" class="logo_image">
+			</div>
+			<div class="name">
+				<p>Collin Murch</p>
+			</div>
+		</div>
+		<div class="footer">
+			<div class="left">
+				2018
+			</div>
+			<div class="right">
+				<a href="https://github.com/collinmurch" target="_blank">GITHUB</a>
+				<a href="https://twitter.com/collinmurch" target="_blank">TWITTER</a>
+				<a href="https://medium.com/@collinmurch" target="_blank">MEDIUM</a>
+			</div>
+		</div>
+	</div>
+</body>
+
+```
+
+---
+
+import { CodeSurfer } from 'mdx-deck-code-surfer'
+import nightOwl from "prism-react-renderer/themes/nightOwl"
+
+<CodeSurfer
+ 	title="The Old Way"
+	theme={nightOwl}
+	code={require("!raw-loader!./bad_scraping.py")}
+	lang="python"
+	showNumbers={false}
+	dark={true}
+	steps={[
+		{ notes: "Using Python's request library," },
+		{ lines: [1], notes: "we first have to import it," },
+		{ lines: [3], notes: "then download the website," },
+		{ lines: [5], notes: "then split it by the 'href' tag," },
+		{ range: [7, 14], notes: "and finally store all websites (starting with 'https')." },
+	]}
+/>
+
+---
+
+# That's no fun
+
+<Appear>
+	<i>(imagine trying to get that working for 100,000 links)<br/><br/><br/><br/></i>
+	<i>Let's use Beautiful Soup<br/><br/><img src="https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fthumbs.gfycat.com%2FSomberSizzlingGrayreefshark-max-1mb.gif&f=1" alt="soup_gif" width="250" height="200" /></i>
+	
+</Appear>
+
+---
+
+<CodeSurfer
+ 	title="The 'New' Wave"
+	theme={nightOwl}
+	code={require("!raw-loader!./good_scraping.py")}
+	lang="python"
+	showNumbers={false}
+	dark={true}
+	steps={[
+		{ notes: "Using Beautiful Soup," },
+		{ range: [1, 2], notes: "we first have to import both it and the request library," },
+		{ lines: [4], notes: "then open the website," },
+		{ lines: [5], notes: "then send it to Beautiful Soup," },
+		{ range: [7, 14], notes: "and finally print all items stored in the 'href' tag." },
+	]}
+/>
+
+---
+
+# Conclusion
+
+<ul>
+	<Appear>
+		<b>Beautiful Soup makes web scraping:</b>
+		<li>Fast</li>
+		<li>Easy</li>
+		<li>Scalable</li>
+	</Appear>
+</ul>
+
+---
+
+export default Invert
+
+*Now let's answer three questions about*
+
+# APIs and JSON Data
+
+<br />
+<br />
+<img src="https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fachievement-images.teamtreehouse.com%2Fbadges_development-tools_rest-api-basics_stage01.png&f=1" alt="api_img" width="200" height="225" />	
+
+---
+
+# 1. What is an API?
+
+<ul>
+	<Appear>
+		<li>It's an Application Programming Interface</li>
+	</Appear>
+</ul>
+
+---
+
+# 2. What does that mean?
+
+<ul>
+	<Appear>
+		<b><br/>Basically:<br/></b>
+		<p>Your computer tells Google (or any website with an API),</p>
+		<p>"give me data!"</p>
+		<p>and then you get JSON data.</p>
+	</Appear>
+</ul>
+
+---
+
+# 3. What is JSON data?
+
+<ul>
+	<Appear>
+		<li>It's a better CSV file</li>
+	</Appear>
+</ul>
+
+---
+
+# JSON
+
+```JSON
+{
+	"collin" : {
+		"grade" : "senior",
+		"lastname" : "murch"
+	},
+	"julia" : {
+		"grade" : "junior",
+		"lastname" : "beitel"
+	},
+	"lillian" : {
+		"grade" : "junior",
+		"lastname" : "ellis"
+	},
+	"hanan" : {
+		"grade" : "senior",
+		"lastname" : "sherka"
+	},
+	"david" : {
+		"grade" : "senior",
+		"lastname" : "abramowitz"
+	}
+}
+```
+
+---
+
+# APIs are pretty cool
+
+<Appear>
+	<i>Let's see what they can do</i>
+</Appear>
+
+---
+
+export default Invert
+
+# Thank you!
+
+<br />
+<br />
+
+<img alt="smile_gif" src="https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fmedia.giphy.com%2Fmedia%2FPTrmNrpCfGBUY%2Fgiphy.gif&f=1"></img>
+
+<br />
+<br />
+
+<i>HQ code can be found at <a href="https://github.com/collinmurch/hqpwner">github.com/collinmurch</a></i>
